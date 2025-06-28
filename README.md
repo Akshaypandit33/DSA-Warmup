@@ -40,14 +40,14 @@ public class DecimalToBinary {
 ### Trick:
 Binary TimeLine
 
-| Decimal Number | 8   | 4   | 2   | 1     | & 1 |
-| -------------- | --- | --- | --- | ----- | --- |
-| 8              | 1   | 0   | 0   | 0     | 0   |
-| 4              | 0   | 1   | 0   | 0     | 0   |
-| ==5==          | 0   | 1   | 0   | ==1== | 1   |
-| ==3==          | 0   | 0   | 1   | ==1== | 1   |
-| 2              | 0   | 0   | 1   | 0     | 0   |
-| ==1==          | 0   | 0   | 0   | ==1== | 1   |
+| Decimal Number | 8   | 4   | 2   | 1   | & 1 |
+| -------------- | --- | --- | --- | --- | --- |
+| 8              | 1   | 0   | 0   | 0   | 0   |
+| 4              | 0   | 1   | 0   | 0   | 0   |
+| 5              | 0   | 1   | 0   | 1   | 1   |
+| 3              | 0   | 0   | 1   | 1   | 1   |
+| 2              | 0   | 0   | 1   | 0   | 0   |
+| 1              | 0   | 0   | 0   | 1   | 1   |
 **Note** : we can observe that ending bits of the odd number is 1, and after performing **&** operation we will also get the last digit as 1
 
 ``` java
