@@ -68,3 +68,66 @@ public class EvnOrOdd {
   
 }
 ```
+
+## Number of 1 Bits
+[Leetcode Link](https://leetcode.com/problems/number-of-1-bits/)
+
+``` java
+public static int hammingWeight(int n) {  
+    int result=0;  
+    while(n != 0)  
+    {  
+        int lsb = n&1;  
+        if(lsb == 1)  
+        {  
+            result += 1;  
+        }  
+        n = n >> 1;  
+    }  
+    return result;  
+}
+```
+
+
+## Optimized Conversion of Number System
+
+### Decimal To Binary
+
+using bit-wise operator
+
+``` java
+public static String toBinary(int num) {  
+    String result = "";  
+  
+    // num = 10  
+    //binary of 10 = 1010    while (num != 0)  
+    {  
+        int lsb = num & 1;  
+        result = lsb + result;  
+        num = num >>1;  
+    }  
+    return result;  
+}
+```
+### Binary To Decimal
+
+``` java
+public static int toDecimal (int binary)  
+{  
+    int result =0;  
+    // binary = 1010  
+    int index =0;  
+  
+    while (binary != 0)  
+    {  
+        int lastBit = binary % 10;  
+        if(lastBit ==1)  
+        {  
+            result = (int) (result + Math.pow(2, index));  
+        }  
+        binary = binary / 10;  
+        index++;  
+    }  
+    return result;  
+}
+```
