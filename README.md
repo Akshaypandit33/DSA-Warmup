@@ -69,7 +69,7 @@ public class EvnOrOdd {
 }
 ```
 
-## Number of 1 Bits
+##  Number of 1 Bits
 [Leetcode Link](https://leetcode.com/problems/number-of-1-bits/)
 
 ``` java
@@ -88,6 +88,116 @@ public static int hammingWeight(int n) {
 }
 ```
 
+
+
+##  Get Bit at `i-th` Position
+
+#### ✅ Purpose:
+
+Check whether the **i-th bit (0-indexed from right)** in an integer is **set (1)** or **unset (0)** using **bit manipulation**.
+
+``` java
+public static boolean getBit(int  num, int i)  
+{  
+  
+    return(num &(1 << i)) !=0;  
+}
+```
+If I returns true it means the bit at that location is 1.
+
+
+
+## Set Bit at `i-th` Position
+### 📌 Purpose:
+
+Set the `i-th` bit to **1** (regardless of its current value).
+
+``` java
+public static int setBit(int  num, int i)  
+{  
+    return num | (1 <<i);  
+}
+```
+
+## Clear Bit
+### 📌 Purpose:
+
+Clear (set to 0) the `i-th` bit in an integer.
+
+### Algorithm
+
+``` Algorithm
+Input: num (integer), index (1-based bit position from right)
+
+1. Calculate the bit position:
+   position = index - 1   // convert to 0-based
+
+2. Create the mask:
+   mask = ~(1 << position)
+   // This creates a mask where only the 'position'th bit is 0
+
+3. Clear the bit using bitwise AND:
+   result = num & mask
+
+4. Return the result
+
+```
+
+### code
+```java
+//  clear bit or set the bit value to 0  
+// num = 45 i.e, Binary = 101101  
+// index =3, then the output should 101_0_01  
+public static int clearBitAtIndex( int num, int index) {  
+    int mask =  ~(1 << ( index -1 ));  
+    return num & mask;  
+}
+```
+
+## Clear All Bits in MSB
+###  📌Purpose of `clearMSB`
+
+The goal is to **clear (set to 0)** all bits from the **most significant bit down to and including the given bit index**.
+
+- Think of it as keeping only the **least significant `index` bits**, and clearing everything to the left.
+
+### Algorithm
+``` Algorithm
+Input: num (integer), index (1-based from right)
+
+1. Create a mask:
+   mask = (1 << index) - 1
+   This creates a bitmask with only the lowest `index` bits as 1
+
+2. AND num with mask:
+   result = num & mask
+
+3. Return result
+
+```
+
+### Code
+``` java
+public static int clearMSB(int num, int index) {
+    int mask = (1 << index) - 1;  // step 1 & 2: generate mask
+    return num & mask;            // step 3: clear MSB bits
+}
+
+```
+
+### Example
+``` Example
+  num = 45 i.e, Binary = 101101  
+  step 1: create a mast of left shift 1 with inex 1 << (index-1) and store it.  
+           ex: index =3 then 1<< 3 , 1000  
+  step 2: subtract 1 from the created mask  
+          ex : 1000-1 = 0111  
+ step 3: perform AND operation between num and the mask  
+            ex:  101101
+               & 000111               
+               ----------                 
+                 000101
+```
 
 ## Optimized Conversion of Number System
 
