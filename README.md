@@ -20,7 +20,7 @@
     
 - [Clear All Bits in LSB](#clear-all-bits-in-lsb)
 	
-- [Find unique element](#find-unique-elements)
+- [Find unique element](#find-unique-element)
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
