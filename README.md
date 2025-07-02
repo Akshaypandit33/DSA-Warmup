@@ -19,6 +19,8 @@
 - [Clear All Bits in MSB](#clear-all-bits-in-msb)
     
 - [Clear All Bits in LSB](#clear-all-bits-in-lsb)
+	
+- [Find unique element](#find-unique-elements)
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
@@ -285,6 +287,34 @@ This will **turn off bits 0 through i**, keeping higher bits unchanged.
 public static int clearLSB(int num, int index) {  
     int mask = -1 << (index+1);  
     return num & mask;  
+}
+```
+
+
+## Find Unique Element
+
+### problem:
+
+ Find the unique element from a set of an array where all elements appear twice only one element appear once  
+ ex {1,2,3,4,1,2,3}
+#### Trick
+``` trick
+XOR cancels same number i.e.,
+ 1 ^ 1 = 1
+ 1 ^ 0 = 0
+ 0 ^ 1 = 0
+ 0 ^ 0 = 1
+```
+
+``` java
+public static int findUnique(int[] arr)  
+{  
+    int unique =0;  
+    for(int ele : arr)  
+    {  
+        unique = unique^ ele;  
+    }  
+    return unique;  
 }
 ```
 
