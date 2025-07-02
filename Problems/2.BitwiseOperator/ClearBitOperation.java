@@ -4,6 +4,8 @@ public class ClearBitOperation {
         System.out.println(Integer.toBinaryString(clearBitAtIndex));
         int clearMSB = clearMSB(45,3);
         System.out.println(Integer.toBinaryString(clearMSB));
+        int clearLSB = clearLSB(45,2);
+        System.out.println(Integer.toBinaryString(clearLSB));
     }
 
     //  clear bit or set the bit value to 0
@@ -32,6 +34,11 @@ public class ClearBitOperation {
 
     public static int clearMSB(int num, int index){
         int mask = (1 << (index)) - 1;
+        return num & mask;
+    }
+
+    public static int clearLSB(int num, int index) {
+        int mask = -1 << (index+1);
         return num & mask;
     }
 }

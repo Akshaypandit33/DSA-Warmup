@@ -199,6 +199,65 @@ public static int clearMSB(int num, int index) {
                  000101
 ```
 
+##  Clear All Bits in LSB 
+### Purpose :
+Clear (set to 0) all bits **from position `i` down to 0**, and **keep the bits above `i` unchanged**. 
+
+``` understanding the idea
+
+Suppose:
+
+- `num = 45` → Binary: `101101`
+- `i = 2` → You want to clear bits at positions 2, 1, 0
+
+Expected:
+
+Original:     101101
+Index:           ^^^  ← clear these
+Result:      101000
+
+```
+
+
+### Algorithm
+#### Step-by-Step:
+
+##### 🔹 Step 1: Start with all 1s
+
+In Java, `-1` is represented as all 1s in binary (because of 2’s complement):
+
+	`-1 → 11111111 11111111 11111111 11111111 (32-bit)`
+
+##### 🔹 Step 2: Shift left by (i + 1)
+
+	`int mask = -1 << (i + 1);`
+
+If `i = 2`, then:
+	- `-1 << 3` means shift all bits left by 3:
+
+`Before shift: 11111111 11111111 11111111 11111111 After shift:  11111111 11111111 11111111 11111000`
+
+Now, the **lowest 3 bits are 0**, everything else is 1.
+
+---
+
+#### Step 3: AND with `num`
+
+Now do:
+
+	`result = num & mask;`
+
+This will **turn off bits 0 through i**, keeping higher bits unchanged.
+
+### Code
+
+``` Java
+public static int clearLSB(int num, int index) {  
+    int mask = -1 << (index+1);  
+    return num & mask;  
+}
+```
+
 ## Optimized Conversion of Number System
 
 ### Decimal To Binary
