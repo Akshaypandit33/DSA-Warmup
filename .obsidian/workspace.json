@@ -1,0 +1,201 @@
+{
+  "main": {
+    "id": "c6c1b257cc81abbc",
+    "type": "split",
+    "children": [
+      {
+        "id": "5644d4c94f3c13b5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c749d3cf93ba34fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          },
+          {
+            "id": "3846219c5aa0d5cb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "826f51317d6fc25c",
+    "type": "split",
+    "children": [
+      {
+        "id": "0949df09c74ee13e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "166801ace25ee857",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "cb92268bae2b8e57",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "e4b2baa44764e64f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ae474187c72c9c46",
+    "type": "split",
+    "children": [
+      {
+        "id": "73e9fa26c4968165",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9d2bb13b4527384c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for README"
+            }
+          },
+          {
+            "id": "42ce2c59e860b4de",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from README"
+            }
+          },
+          {
+            "id": "157fd945c607040f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "59c82a2b3366ba48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "c749d3cf93ba34fa",
+  "lastOpenFiles": [
+    "out/production/DSA-Warmup/ClearBitOperation.class",
+    "out/production/DSA-Warmup/BasicBitOperations.class",
+    "Problems/3.MathProblems/PowerOfTwo.java",
+    "Problems/3.MathProblems/ReverseInteger.java",
+    "Problems/3.MathProblems",
+    "Problems/2.BitwiseOperator/BasicBitOperations.java",
+    "out/production/DSA-Warmup/NumberSystem.class",
+    "Problems/2.BitwiseOperator/NumberSystem.java",
+    "out/production/DSA-Warmup/NumberOf1sBit.class",
+    "Problems/2.BitwiseOperator/NumberOf1sBit.java",
+    "out/production/DSA-Warmup/EvnOrOdd.class",
+    "Number System.md",
+    "README.md"
+  ]
+}

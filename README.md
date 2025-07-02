@@ -1,5 +1,35 @@
 # DSA-Warmup
 
+# 📘 Table of Contents
+## 1. Number System
+
+- [Decimal To Binary](#decimal-to-binary)
+## 2. Bit-Wise Operators
+
+- [Check Number is Even or Odd](#check-number-is-even-or-odd)
+    
+- [Number of 1 Bits](#number-of-1-bits)
+    
+- [Get Bit at i-th Position](#get-bit-at-i-th-position)
+    
+- [Set Bit at i-th Position](#set-bit-at-i-th-position)
+    
+- [Clear Bit](#clear-bit)
+    
+- [Clear All Bits in MSB](#clear-all-bits-in-msb)
+    
+- [Clear All Bits in LSB](#clear-all-bits-in-lsb)
+    
+- [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
+    
+    - [Decimal To Binary (Bitwise)](#decimal-to-binary-bitwise)
+        
+    - [Binary To Decimal](#binary-to-decimal)
+        
+## 3. Mathematics Problems
+
+- [Reverse Integer](#reverse-integer)
+
 # 1. Number System
 ## Decimal To Binary
 #### Algorithms
