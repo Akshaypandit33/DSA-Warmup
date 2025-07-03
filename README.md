@@ -399,7 +399,8 @@ public static boolean isPowerOfTwo(int n) {
 ```
 
 
-## Power Of 4  [Leetcode-342](https://leetcode.com/problems/power-of-four)
+## Power Of 4  
+#### [Leetcode-342](https://leetcode.com/problems/power-of-four)
 
 
 ``` java
