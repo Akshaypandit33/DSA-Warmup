@@ -318,6 +318,80 @@ public static int findUnique(int[] arr)
 }
 ```
 
+
+## Power Of 2's
+
+### ✅ Step-by-Step Breakdown:
+
+---
+
+#### 🔹 Step 1: Check if `n` is less than 1
+
+``` java
+if(n < 1) {
+	return false;
+}
+```
+
+- **Why?**
+    
+    - Powers of two are **positive integers**: 1, 2, 4, 8, 16, 32, ...
+        
+    - Any number ≤ 0 cannot be a power of two.
+        
+- **Examples**:
+    
+    - `n = 0` → return `false`
+        
+    - `n = -8` → return `false`
+        
+
+---
+
+#### 🔹 Step 2: Use Bitwise AND Trick
+
+``` java
+return (n & (n - 1)) == 0;
+```
+
+- **What does this mean?**
+    
+    - Powers of two have **exactly one `1` bit** in binary.
+        
+        - 1 → `0001`
+            
+        - 2 → `0010`
+            
+        - 4 → `0100`
+            
+        - 8 → `1000`
+            
+    - Subtracting 1 flips the bits to the right of the `1` bit.
+        
+        - Example:
+            
+            - `8` in binary: `1000`
+                
+            - `8 - 1 = 7`: `0111`
+                
+            - `8 & 7 = 1000 & 0111 = 0000`
+                
+- **If result is 0**, then `n` is a power of two.
+    
+- **Why does this work?**
+    
+    - The only time `(n & (n - 1)) == 0` is **when `n` has only one `1` bit**, i.e., it’s a power of 2.
+
+``` java
+public static boolean isPowerOfTwo(int n) {  
+    if(n<1)  
+    {  
+        return false;  
+    }  
+    return (n & (n-1)) ==0;  
+}
+```
+
 ## Optimized Conversion of Number System
 
 ### Decimal To Binary
