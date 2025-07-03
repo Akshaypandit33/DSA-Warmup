@@ -22,7 +22,10 @@
 	
 - [Find unique element](#find-unique-element)
 	
-- [Power of 2](#power-of-2)                                                    [LeetCode -231](https://leetcode.com/problems/power-of-two)
+- [Power of 2](#power-of-2)                                                    [Leetcode -231](https://leetcode.com/problems/power-of-two)
+	
+- [Power of 4](#power-of-4)                                                    [Leetcode-342](https://leetcode.com/problems/power-of-four)
+
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
@@ -395,6 +398,15 @@ public static boolean isPowerOfTwo(int n) {
 }
 ```
 
+
+## Power Of 4  [Leetcode-342](https://leetcode.com/problems/power-of-four)
+
+
+``` java
+public static boolean isPowerOf4(int n) {  
+    return ((n & n - 1) == 0) && ((n - 1) % 3 == 0);  
+}
+```
 
 ## Optimized Conversion of Number System
 
