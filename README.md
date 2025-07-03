@@ -22,7 +22,7 @@
 	
 - [Find unique element](#find-unique-element)
 	
-- [Power of 2's](#power-of-2's)   [LeetCode -231](https://leetcode.com/problems/power-of-two)
+- [Power of 2](#power-of-2)                                                    [LeetCode -231](https://leetcode.com/problems/power-of-two)
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
@@ -321,7 +321,7 @@ public static int findUnique(int[] arr)
 ```
 
 
-## Power Of 2's
+## Power Of 2
 
 [LeetCode -231](https://leetcode.com/problems/power-of-two)
 ### ✅ Step-by-Step Breakdown:
