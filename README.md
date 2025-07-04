@@ -27,6 +27,8 @@
 - [Power of 4](#power-of-4) -----------------------------------[Leetcode-342](https://leetcode.com/problems/power-of-four)
 	
 - [Flip the Bit](#flip-the-bits) -----------------------------------[Leetcode - 1009](https://leetcode.com/problems/complement-of-base-10-integer/description)
+	
+- [Check Parity of the word](#check-party-of-the-word)
 
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
@@ -514,6 +516,41 @@ Result     = 00000000000000000000000000000010 = 2
 
         return (~n) & mask;
     }
+```
+
+
+## Check parity of the word
+
+### Description
+
+The parity of binary is 1 if the number of 1s in the word is odd.,  
+otherwise, it is 0.
+
+``` Example
+
+For `n = 5` → binary `101`
+
+- 1st bit: 1 → `res = 0 ^ 1 = 1`
+    
+- 2nd bit: 0 → `res = 1 ^ 0 = 1`
+    
+- 3rd bit: 1 → `res = 1 ^ 1 = 0` → even number of 1s
+    
+
+✔️ Final result: `0` → even parity
+```
+
+``` java
+public static short checkParity(int n)  
+{  
+    short res =0;  
+    while( n != 0)  
+    {  
+        res = (short) (res ^ (n & 1));  
+        n=n>>1;  
+    }  
+    return res;  
+}
 ```
 ## Optimized Conversion of Number System
 
