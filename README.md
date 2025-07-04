@@ -29,7 +29,8 @@
 - [Flip the Bit](#flip-the-bits) -----------------------------------[Leetcode - 1009](https://leetcode.com/problems/complement-of-base-10-integer/description)
 	
 - [Check Parity of the word](#check-parity-of-the-word)
-
+	
+- [Swap Bits](#swap-bits)
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
@@ -550,6 +551,36 @@ public static short checkParity(int n)
         n=n>>1;  
     }  
     return res;  
+}
+```
+
+
+## Swap Bits
+
+### Description
+
+swap the bits at position i and j in the binary representation of the number x
+
+
+### Working of the code
+``` working
+	Binary of x is : 1001001
+	mask is : 1000010
+	Result : 1011
+```
+
+
+``` java
+public static int swapBits(int x, int i, int j) {  
+    // extract the bits value at i-th position and j-th bit and check whether they are same or not  
+    if( ((x >>> i) & 1) != ((x >>> j) & 1))  
+    {  
+        // we will using bitmasks to flip the bit using XOR at the i and j position  
+        int mask = (1 << i) | (1 << j);   
+        // performing XOR  
+        x = x^ mask;  
+    }  
+    return x;  
 }
 ```
 ## Optimized Conversion of Number System
