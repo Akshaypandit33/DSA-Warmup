@@ -184,6 +184,10 @@
   },
   "active": "c749d3cf93ba34fa",
   "lastOpenFiles": [
+    "out/production/DSA-Warmup/BitwiseComplement.class",
+    "Problems/2.BitwiseOperator/BitwiseComplement.java",
+    "Problems/2.BitwiseOperator/BitwiseCompliment.java~",
+    "Problems/2.BitwiseOperator/BitwiseCompliment.java",
     "out/production/DSA-Warmup/PowerOf4.class",
     "Problems/2.BitwiseOperator/PowerOf4.java",
     "out/production/DSA-Warmup/CountBits.class",
@@ -191,10 +195,6 @@
     "Problems/2.BitwiseOperator/CountBits.java",
     "Problems/2.BitwiseOperator/FindDuplicateNumber.java",
     "out/production/DSA-Warmup/ClearBitOperation.class",
-    "out/production/DSA-Warmup/BasicBitOperations.class",
-    "Problems/3.MathProblems/PowerOfTwo.java",
-    "Problems/3.MathProblems/ReverseInteger.java",
-    "Problems/3.MathProblems",
     "Number System.md",
     "README.md"
   ]

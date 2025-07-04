@@ -22,9 +22,11 @@
 	
 - [Find unique element](#find-unique-element)
 	
-- [Power of 2](#power-of-2)                                                    [Leetcode -231](https://leetcode.com/problems/power-of-two)
+- [Power of 2](#power-of-2) -----------------------------------[Leetcode -231](https://leetcode.com/problems/power-of-two)
 	
-- [Power of 4](#power-of-4)                                                    [Leetcode-342](https://leetcode.com/problems/power-of-four)
+- [Power of 4](#power-of-4) -----------------------------------[Leetcode-342](https://leetcode.com/problems/power-of-four)
+	
+- [Flip the Bit](#flip-the-bits) -----------------------------------[Leetcode - 1009](https://leetcode.com/problems/complement-of-base-10-integer/description)
 
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
@@ -71,6 +73,71 @@ public class DecimalToBinary {
 ```
 
 # 2. Bit-Wise Operators
+
+## **Some Important Properties**
+
+``` XOR properties
+	a^b=c => b^c=a 
+	x^0 = x 
+	x^x = 0
+```
+
+``` tricks
+
+	1<<n = 2^n 
+	get ith Set bit Number: (1<<i) 
+	get ith Unset bit Number: ~(1<<i) 
+	
+	## Check ith bit of a Number is Set or Not 
+	if((a&(1<<i))!=0) cout<<"Yes";
+```
+
+``` tricks
+  
+## count set bit 
+	a&1 == 1 (Odd digit) 
+	a>>1 -> Divided by 2
+	a<<1 -> Multiply by 2
+```
+
+``` trick
+## Set ith bit of a number => 
+num = num|(1<<i);
+
+## Unset ith bit of a number => 
+num = num&(~(1<<i));
+
+## Check 2^n or Not
+(n&(n-1)==0) // Yes
+
+/*
+Set union A | B
+Set intersection A & B
+Set subtraction A & ~B
+Set negation ALL_BITS ^ A or ~A
+Set bit A |= 1 << bit
+Clear bit A &= ~(1 << bit)
+Test bit (A & 1 << bit) != 0
+Extract last bit A&-A or A&~(A-1) or x^(x&(x-1))
+Remove last bit A&(A-1)
+Get all 1-bits ~0
+*/
+```
+
+```trick
+
+### XOR of elements in the Range in [L,R] in O(1) time. 
+int f(int n){
+    if(n%4==0) return n;
+    else if(n%4==1) return 1;
+    else if(n%4==2) return n+1;
+    else return 0;
+}
+int findXOR(int L, int R){
+    return f(L-1)^f(R);
+}
+```
+
 
 ## Check Number is Even or Odd
 
@@ -409,6 +476,45 @@ public static boolean isPowerOf4(int n) {
 }
 ```
 
+
+## Flip the Bits 
+### [Leetcode - 1009](https://leetcode.com/problems/complement-of-base-10-integer/description)
+
+### Problem
+The **bitwise complement** of a binary number flips 1s to 0s and 0s to 1s.
+
+For example:  
+`n = 5`  
+Binary: `101`  
+Complement: `010` → which is `2` in decimal
+
+``` Notes
+if n=5 
+n          = ...00000000000000000000000000000101
+(~n)       = ...11111111111111111111111111111010
+(mask)     = 00000000000000000000000000000111
+Result     = 00000000000000000000000000000010 = 2
+
+```
+
+``` java
+
+    public int bitwiseComplement(int n) {
+
+        // base case
+
+        if(n==0) return 1;
+        int num = n;
+        int mask =0;
+        while(num != 0)
+        {
+            mask = mask << 1 | 1;
+            num = num >> 1;
+        }
+
+        return (~n) & mask;
+    }
+```
 ## Optimized Conversion of Number System
 
 ### Decimal To Binary
