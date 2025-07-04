@@ -28,7 +28,7 @@
 	
 - [Flip the Bit](#flip-the-bits) -----------------------------------[Leetcode - 1009](https://leetcode.com/problems/complement-of-base-10-integer/description)
 	
-- [Check Parity of the word](#check-party-of-the-word)
+- [Check Parity of the word](#check-parity-of-the-word)
 
     
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
