@@ -617,6 +617,7 @@ swap the bits at position i and j in the binary representation of the number x
 ``` java
 public static int swapBits(int x, int i, int j) {  
     // extract the bits value at i-th position and j-th bit and check whether they are same or not  
+    
     if( ((x >>> i) & 1) != ((x >>> j) & 1))  
     {  
         // we will using bitmasks to flip the bit using XOR at the i and j position  
@@ -675,7 +676,8 @@ public static int minimumFlips1(int a, int b, int c) {
         {  
   
             // if both a and b is equal to 1 then obviously the value of c is zero  
-            // and we can't make ( a OR b) zero with only one flips, so in this case we need two flips            if(((a & 1) == 1) && ((b & 1) == 1))  
+            // and we can't make ( a OR b) zero with only one flips, so in this case we need two flips            
+            if(((a & 1) == 1) && ((b & 1) == 1))  
             {  
                 flips ++;  
                 flips ++;  
