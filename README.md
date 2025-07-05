@@ -34,6 +34,8 @@
 	
 - [Minimum flips](#minimum-flips)--------------------------------[Leetcode - 1318](https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/description/)
 	
+- [Single Number II](#single-number-ii)-----------------------------[Leetcode - 137](https://leetcode.com/problems/single-number-ii/)
+	
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
     - [Decimal To Binary (Bitwise)](#decimal-to-binary-bitwise)
@@ -696,6 +698,78 @@ public static int minimumFlips1(int a, int b, int c) {
 ```
 
 
+## Single Number II 
+
+### [Leetcode - 137](https://leetcode.com/problems/single-number-ii/)
+
+Given an integer array `nums` where every element appears **three times** except for one, which appears **exactly once**. _Find the single element and return it_.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+**Example 1:**
+
+**Input:** nums = [2,2,3,2]
+**Output:** 3
+
+**Example 2:**
+
+**Input:** nums = [0,1,0,1,0,1,99]
+**Output:** 99
+
+
+### Algorithm
+
+### **Steps**:
+
+1. **Initialize** a variable `res = 0` to store the final result (the unique number).
+    
+2. **Repeat** for each bit position `k` from `0` to `31` (because integers are 32-bit):
+    
+    - 2.1. Initialize a counter `countOnes = 0` to store the number of 1s at the `k`-th bit position across all elements.
+        
+    - 2.2. **For each element** `ele` in the array:
+        
+        - 2.2.1. Right shift the element by `k` bits: `ele >> k`.
+            
+        - 2.2.2. Perform bitwise AND with `1` to extract the `k`-th bit: `((ele >> k) & 1)`.
+            
+        - 2.2.3. If the `k`-th bit is `1`, increment `countOnes`.
+            
+    - 2.3. After checking all elements, check if `countOnes % 3 == 1`:
+        
+        - 2.3.1. If true, it means the unique element has `1` at the `k`-th bit.
+            
+        - 2.3.2. Set the `k`-th bit in result using: `res = res | (1 << k)`.
+            
+3. **Return** the final result `res`, which contains the unique number.
+
+``` java
+
+public static int singleNumber2(int[] arr) {  
+    int res =0;  
+  
+    // run the loops till last bit that is for int the last bit is 31  
+    for(int k=0; k < 32; k++)  
+    {  
+        int countOnes=0;  
+  
+        int temp = 1 << k;  
+  
+        for(int ele : arr)  
+        {  
+            if( ((ele >> k) & 1) == 1)  
+            {  
+                countOnes++;  
+            }  
+        }  
+        if(countOnes % 3 == 1)  
+        {  
+            res = res | temp;  
+        }  
+    }  
+return res;  
+}
+```
 ## Optimized Conversion of Number System
 
 ### Decimal To Binary
