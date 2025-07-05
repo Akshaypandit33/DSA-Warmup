@@ -31,7 +31,9 @@
 - [Check Parity of the word](#check-parity-of-the-word)
 	
 - [Swap Bits](#swap-bits)
-    
+	
+- [Minimum flips](#minimum-flips)--------------------------------[Leetcode - 1318](https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/description/)
+	
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
     - [Decimal To Binary (Bitwise)](#decimal-to-binary-bitwise)
@@ -141,6 +143,48 @@ int findXOR(int L, int R){
 }
 ```
 
+
+## **Hexa Decimal Chart**
+# Hexadecimal to Binary Mapping and Bitmask Patterns
+
+### 📘 Hex ↔ Binary Mapping Table
+
+| Binary | Hex |     | Binary | Hex |
+|--------|-----|-----|--------|-----|
+| 0000   | 0   |     | 1000   | 8   |
+| 0001   | 1   |     | 1001   | 9   |
+| 0010   | 2   |     | 1010   | A   |
+| 0011   | 3   |     | 1011   | B   |
+| 0100   | 4   |     | 1100   | C   |
+| 0101   | 5   |     | 1101   | D   |
+| 0110   | 6   |     | 1110   | E   |
+| 0111   | 7   |     | 1111   | F   |
+
+---
+
+### 🔧 Common Bitmask Patterns
+
+| Binary Pattern                   | Hex Value    | Purpose                        |
+|----------------------------------|--------------|--------------------------------|
+| `10101010 10101010 10101010 10101010` | `0xAAAAAAAA` | Mask odd-positioned bits       |
+| `01010101 01010101 01010101 01010101` | `0x55555555` | Mask even-positioned bits      |
+| `11110000 11110000 11110000 11110000` | `0xF0F0F0F0` | High 4-bit nibbles of bytes    |
+| `00001111 00001111 00001111 00001111` | `0x0F0F0F0F` | Low 4-bit nibbles of bytes     |
+| `11111111 00000000 11111111 00000000` | `0xFF00FF00` | High bytes (8-bit chunks)      |
+| `00000000 11111111 00000000 11111111` | `0x00FF00FF` | Low bytes (8-bit chunks)       |
+| `11001100 11001100 11001100 11001100` | `0xCCCCCCCC` | Swap 2-bit pairs               |
+| `00110011 00110011 00110011 00110011` | `0x33333333` | Opposite of 2-bit pair mask    |
+
+---
+
+### 📌 Tip
+
+To convert a binary pattern to hex:
+1. Break it into 4-bit groups from left to right.
+2. Use the table above to map each 4-bit group to its hex equivalent.
+3. Combine all hex values to get the full hexadecimal representation.
+
+---
 
 ## Check Number is Even or Odd
 
@@ -583,6 +627,73 @@ public static int swapBits(int x, int i, int j) {
     return x;  
 }
 ```
+
+
+## Minimum flips
+### [Leetcode 1318](https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/description/)
+
+Given 3 positives numbers `a`, `b` and `c`. Return the minimum flips required in some bits of `a` and `b` to make ( `a` OR `b` == `c` ). (bitwise OR operation).  
+Flip operation consists of change **any** single bit 1 to 0 or change the bit 0 to 1 in their binary representation.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2020/01/06/sample_3_1676.png)
+
+**Input:** a = 2, b = 6, c = 5
+**Output:** 3
+**Explanation:** After flips a = 1 , b = 4 , c = 5 such that (`a` OR `b` == `c`)
+
+**Example 2:**
+
+**Input:** a = 4, b = 2, c = 7
+**Output:** 1
+
+**Example 3:**
+
+**Input:** a = 1, b = 2, c = 3
+**Output:** 0
+
+**Constraints:**
+
+- `1 <= a <= 10^9`
+- `1 <= b <= 10^9`
+- `1 <= c <= 10^9`
+
+
+### Brute force approach
+
+``` java
+// bruteforce-approach  
+public static int minimumFlips1(int a, int b, int c) {  
+    short flips=0;  
+  
+    // iterate while all values are not equal to zero  
+    while(a !=0 || b!=0 || c!=0){  
+  
+        // check only if the bits position of (a OR b) not equal to c  
+        if(((a & 1) | (b & 1)) != (c & 1))  
+        {  
+  
+            // if both a and b is equal to 1 then obviously the value of c is zero  
+            // and we can't make ( a OR b) zero with only one flips, so in this case we need two flips            if(((a & 1) == 1) && ((b & 1) == 1))  
+            {  
+                flips ++;  
+                flips ++;  
+            }  
+            else  
+            {  
+                flips ++;  
+            }  
+        }  
+        a= a>>>1;  
+        b= b>>>1;  
+        c= c>>>1;  
+    }  
+    return flips;  
+}
+```
+
+
 ## Optimized Conversion of Number System
 
 ### Decimal To Binary

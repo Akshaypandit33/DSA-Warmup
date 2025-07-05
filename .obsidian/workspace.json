@@ -184,6 +184,9 @@
   },
   "active": "c749d3cf93ba34fa",
   "lastOpenFiles": [
+    "out/production/DSA-Warmup/MinimumFlips.class",
+    "Problems/2.BitwiseOperator/MinimumFlips.java~",
+    "Problems/2.BitwiseOperator/MinimumFlips.java",
     "out/production/DSA-Warmup/SwapBits.class",
     "Problems/2.BitwiseOperator/SwapBits.java",
     "Problems/2.BitwiseOperator/CheckParity.java~",
@@ -192,9 +195,6 @@
     "out/production/DSA-Warmup/BitwiseComplement.class",
     "Problems/2.BitwiseOperator/BitwiseComplement.java",
     "Problems/2.BitwiseOperator/BitwiseCompliment.java~",
-    "Problems/2.BitwiseOperator/BitwiseCompliment.java",
-    "out/production/DSA-Warmup/PowerOf4.class",
-    "Problems/2.BitwiseOperator/PowerOf4.java",
     "Number System.md",
     "README.md"
   ]
