@@ -38,14 +38,73 @@ public class DynamicArray {
         return Arrays.copyOf(this.items, this.initialCapacity);
 
     }
+
+    // search index of the value
+    public int indexOf(int item)
+    {
+        for(int i =0; i < this.currentIndex  ; i++) {
+            if(this.items[i] == item) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // remove item from the particular index
+    public void removeAt(int index)
+    {
+        if(index > this.currentIndex)
+        {
+            System.out.println("Index out of bounds");
+            return;
+        }
+        for(int i= index; i<this.currentIndex -1; i++) {
+            this.items[i] = this.items[i+1];
+        }
+        this.items[this.currentIndex-1]=0;
+        this.currentIndex--;
+    }
+
+    // find a maximum element from an array
+    public int max()
+    {
+        int max = this.items[0];
+        for(int i=0; i<this.currentIndex; i++) {
+            if(this.items[i] > max) {
+                max = this.items[i];
+            }
+        }
+        return max;
+    }
+
+    public void reverse()
+    {
+        for(int i=0 ; i< this.currentIndex/2 ; i++) {
+            int temp = this.items[i];
+            this.items[i] = this.items[this.currentIndex-i-1];
+            this.items[this.currentIndex-i-1] = temp;
+        }
+    }
+
+    // find a minimum element from an array
+    public int min()
+    {
+        int min = this.items[0];
+        for(int i=0; i<this.currentIndex; i++) {
+            if(this.items[i] < min) {
+                min = this.items[i];
+            }
+        }
+        return min;
+    }
     @Override
     public String toString()
     {
         StringBuilder s = new StringBuilder();
         s.append("[");
-        for(int ele : this.items)
+        for(int i=0; i<this.currentIndex; i++)
         {
-            s.append(ele).append(",");
+            s.append(this.items[i]).append(",");
         }
         s.append("\b").append("]");
         return s.toString();
