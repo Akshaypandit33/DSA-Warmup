@@ -20,7 +20,7 @@
     
 - [Clear All Bits in LSB](#clear-all-bits-in-lsb)
 	
-- [Find unique element](#find-unique-element)
+- [Find unique element / Single Element](#find-unique-element)-------[Leetcode - 136](https://leetcode.com/problems/single-number/description/)
 	
 - [Power of 2](#power-of-2) -----------------------------------[Leetcode -231](https://leetcode.com/problems/power-of-two)
 	
@@ -147,7 +147,7 @@ int findXOR(int L, int R){
 
 
 ## **Hexa Decimal Chart**
-# Hexadecimal to Binary Mapping and Bitmask Patterns
+## Hexadecimal to Binary Mapping and Bitmask Patterns
 
 ### 📘 Hex ↔ Binary Mapping Table
 
@@ -413,6 +413,8 @@ public static int clearLSB(int num, int index) {
 
 
 ## Find Unique Element
+
+### [Leetcode - 136](https://leetcode.com/problems/single-number/description/)
 
 ### problem:
 
@@ -865,3 +867,99 @@ Given a signed 32-bit integer `x`, return `x` _with its digits reversed_. If 
 
 
 
+
+
+# 4. Arrays
+
+### Important Points
+
+- Store similar data inside
+- Arrays are static in size i.e., we have to initialize an array with size
+``` java
+int[] arr = new int[5];
+```
+
+### Time Complexity
+
+|    Operation    | Time Complexity |                                                   Reasons                                                    |
+| :-------------: | :-------------: | :----------------------------------------------------------------------------------------------------------: |
+|    Insertion    |      O(1)       |                          Uses indexing like `arr[2]= 4` and direct access to memory                          |
+| Lookup by Index |      O(1)       |                                             Because of indexing                                              |
+| Lookup by value |      O(n)       |                Can be vary by algorithm just for this case we are talking about linear search                |
+|    Deletion     |      O(n)       | Worst case will be O(n), because if we delete the element at index 0, then we will have to move all elements |
+### Memory Allocations / Internal Working of an Array
+
+`int[] arr = new int[5]
+
+|     |     |     |     |     |
+| :-: | --- | --- | --- | --- |
+1000      1004     1008     1012    1016
+
+```
+- Value of arr is always the address of the firts element in this case is 1000
+- why index always starts with zero?
+	arr[0] = arr + (0 * size of arrayType) = 1000 + (0 * 4) = 1000
+	arr[1] = arr + (1 * size of arrayType) = 1000 + (1 * 4) = 1004
+	arr[2] = arr + (2 * size of arrayType) = 1000 + (2 * 4) = 1008
+```
+
+### Dynamic Array 
+
+Here We will create our own dynamic array similar to array list
+
+``` java
+import java.util.Arrays;  
+  
+public class DynamicArray {  
+    private  int[] items;  
+    private int currentIndex;  
+    private int initialCapacity;  
+  
+    // this is when user doesn't provide an size  
+    public DynamicArray() {  
+        initialCapacity = 10;  
+        this.items = new int[initialCapacity];  
+        currentIndex = 0;  
+    }
+      
+    // this is if the user provides their own size  
+    public DynamicArray(int initialSize) {  
+        this.items = new int[initialSize];  
+        this.initialCapacity = initialSize;  
+        currentIndex = 0;  
+    }  
+    public void insert(int item)  
+    {        
+	    if(currentIndex < this.initialCapacity) 
+	    {  
+            this.items[currentIndex] = item;  
+        }
+        else {  
+            this.items =increaseSize();  
+            this.items[currentIndex] = item;  
+        }        
+        currentIndex++;  
+    }  
+    
+    // increase the size of an array automatically  
+    public int[] increaseSize()  
+    {        
+	    this.initialCapacity = this.initialCapacity * 2;   
+        return Arrays.copyOf(this.items, this.initialCapacity);  
+  
+    }
+    @Override  
+    public String toString()  
+    {        
+	    StringBuilder s = new StringBuilder();  
+        s.append("[");  
+        for(int ele : this.items)  
+        {            
+	        s.append(ele).append(",");  
+        }        
+        s.append("\b").append("]");  
+        return s.toString();  
+    }  
+  
+}
+```
