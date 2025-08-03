@@ -1,5 +1,7 @@
 # DSA-Warmup
 
+This repository will include problems with their approach to solve DSA problems . I will be solving problems from leetcode and multiple books used to crack technical interview
+
 # 📘 Table of Contents
 ## 1. Number System
 
@@ -35,6 +37,8 @@
 - [Minimum flips](#minimum-flips)--------------------------------[Leetcode - 1318](https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/description/)
 	
 - [Single Number II](#single-number-ii)-----------------------------[Leetcode - 137](https://leetcode.com/problems/single-number-ii/)
+	
+- [Single Number III](#single-number-iii) ---------------------------[Leetcode - 260](https://leetcode.com/problems/single-number-iii/description/)
 	
 - [Optimized Conversion of Number System](#optimized-conversion-of-number-system)
     
@@ -772,6 +776,152 @@ public static int singleNumber2(int[] arr) {
 return res;  
 }
 ```
+
+## Single Number - III
+### [Leetcode - 260](https://leetcode.com/problems/single-number-iii/description/)
+
+Given an integer array `nums`, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in **any order**.
+
+You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.
+
+**Example 1:**
+
+**Input:** nums = [1,2,1,3,2,5]
+**Output:** [3,5]
+**Explanation: ** [5, 3] is also a valid answer.
+
+**Example 2:**
+
+**Input:** nums = [-1,0]
+**Output:** [-1,0]
+
+**Example 3:**
+
+**Input:** nums = [0,1]
+**Output:** [1,0]
+
+**Constraints:**
+
+- `2 <= nums.length <= 3 * 104`
+- `-231 <= nums[i] <= 231 - 1`
+- Each integer in `nums` will appear twice, only two integers will appear once.
+
+### Approach
+```
+
+- `a ^ a = 0` (same numbers cancel out)
+- `a ^ 0 = a` (XOR with 0 gives the original number)
+- Order doesn't matter: `a ^ b ^ c = c ^ a ^ b
+```
+#### Step 1: XOR Everything
+
+java
+
+```java
+int n1xn2 = 0;
+for(int num : nums) {
+    n1xn2 = n1xn2 ^ num;
+}
+```
+
+**Result:** XOR of the two unique numbers (duplicates cancel out)
+
+**Example:** `1^2^1^3^2^5 = 3^5 = 6`
+
+---
+
+#### Step 2: Find Any Set Bit
+
+java
+
+```java
+int rightmostSetBit = 1;
+while((rightmostSetBit & n1xn2) == 0) {
+    rightmostSetBit = rightmostSetBit << 1;
+}
+```
+
+**Result:** A bit position where the two unique numbers differ
+
+**Example:** `6 = 110₂`, rightmost set bit = `10₂` (position 1)
+
+---
+
+#### Step 3: Partition Into Two Groups
+
+java
+
+```java
+for(int num : nums) {
+    if((rightmostSetBit & num) == 0) {
+        num1 = num1 ^ num;  // Group A
+    } else {
+        num2 = num2 ^ num;  // Group B
+    }
+}
+```
+
+**Logic:** Use the set bit to split numbers into two groups
+
+**Example:**
+
+- Group A (bit=0): `[1, 1, 3]`
+- Group B (bit=1): `[2, 2, 5]`
+
+---
+
+#### Step 4: XOR Each Group
+
+**Group A:** `1^1^3 = 3` **Group B:** `2^2^5 = 5`
+
+**Answer:** `[3, 5]`
+
+---
+
+#### Why It Works
+
+1. **XOR cancels duplicates:** `a^a = 0`
+2. **Different numbers have different bits:** We can always find a bit to separate them
+3. **Grouping preserves duplicates:** Same numbers go to same group and cancel out
+
+---
+
+### Complete Code
+
+java
+
+```java
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        // Step 1: XOR all (duplicates cancel)
+        int n1xn2 = 0;
+        for(int num : nums) {
+            n1xn2 ^= num;
+        }
+        
+        // Step 2: Find any set bit  
+        int rightmostSetBit = 1;
+        while((rightmostSetBit & n1xn2) == 0) {
+            rightmostSetBit <<= 1;
+        }
+        
+        // Step 3 & 4: Partition and XOR each group
+        int num1 = 0, num2 = 0;
+        for(int num : nums) {
+            if((rightmostSetBit & num) == 0) {
+                num1 ^= num;
+            } else {
+                num2 ^= num;
+            }
+        }
+        
+        return new int[]{num1, num2};
+    }
+}
+```
+
+**Time:** O(n) | **Space:** O(1)
+
 ## Optimized Conversion of Number System
 
 ### Decimal To Binary
@@ -1021,7 +1171,7 @@ public class DynamicArray {
 ```
 
 ### Two Sum
-### [Leetcode : 1](https://leetcode.com/problems/two-sum/description/)
+#### [Leetcode : 1](https://leetcode.com/problems/two-sum/description/)
 
 Given an array of integers `nums` and an integer `target`, return _indices of the two numbers such that they add up to `target`_.
 
@@ -1109,3 +1259,156 @@ class Solution {
 
 }
 ```
+
+
+### Sort Colors / Dutch Flag Problem
+#### [Leetcode - 75](https://leetcode.com/problems/sort-colors/description/)
+
+Given an array `nums` with `n` objects colored red, white, or blue, sort them **in-place** so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+
+We will use the integers `0`, `1`, and `2` to represent the color red, white, and blue, respectively.
+
+You must solve this problem without using the library's sort function.
+
+**Example 1:**
+
+**Input:** nums = [2,0,2,1,1,0]
+**Output:** [0,0,1,1,2,2]
+
+**Example 2:**
+
+**Input:** nums = [2,0,1]
+**Output:** [0,1,2]
+
+**Constraints:**
+
+- `n == nums.length`
+- `1 <= n <= 300`
+- `nums[i]` is either `0`, `1`, or `2`.
+
+**Follow up:** Could you come up with a one-pass algorithm using only constant extra space?
+
+#### Approach
+
+``` idea
+put all 0's on the left side and 2's on right
+```
+
+1. create three variable `start` ,  `middle` ,`end`
+	- `start` -> will point to 0's
+	- `middle` -> will traverse through the array
+	- `end` -> will point to 2's
+2. case 0 - swap with start, then start++, middle++
+3. case 1 - middle++
+4. case 2 - swap with end, then, end--
+
+
+```java
+    public static void swap(int[] nums, int pos1, int pos2)
+    {
+        int temp = nums[pos1];
+        nums[pos1] = nums[pos2];
+        nums[pos2] = temp;
+    }
+    public void sortColors(int[] nums) {
+        int start=0;
+        int middle=0;
+        int end = nums.length - 1;
+        while(middle <= end)
+        {
+            switch(nums[middle])
+            {
+                case 0:
+                    swap(nums,middle, start);
+                    start ++;
+                    middle++;
+                    break;
+                case 1:
+                    middle++;
+                    break;
+                
+                case 2:
+                    swap(nums, middle, end);
+                    end --;
+            }
+        }
+    }
+```
+
+###  Intersection of Two Arrays
+
+#### [Leetcode - 349](https://leetcode.com/problems/intersection-of-two-arrays/)
+
+Given two integer arrays `nums1` and `nums2`, return _an array of their intersection_. Each element in the result must be **unique** and you may return the result in **any order**.
+
+**Example 1:**
+
+**Input:** nums1 = [1,2,2,1], nums2 = [2,2]
+**Output:** [2]
+
+**Example 2:**
+
+**Input:** nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+**Output:** [9,4]
+**Explanation:** [4,9] is also accepted.
+
+**Constraints:**
+
+- `1 <= nums1.length, nums2.length <= 1000`
+- `0 <= nums1[i], nums2[i] <= 1000`
+
+#### Approach 
+-   **Step 1**: Compare array lengths
+-   **Step 2**: Put longer array in HashMap
+-   **Step 3**: Search shorter array using HashMap
+-   **Step 4**: Remove found elements to prevent duplicates
+-  **Step 5**: Convert result list to array
+
+**Time**: O(m + n) - Visit each element once 
+**Space**: O(larger array) - Store the bigger array
+
+``` java
+public static int[] intersectionApproach1(int[] nums1, int[] nums2) {  
+    HashMap<Integer,Integer> map = new HashMap<>();  
+  
+    boolean isNums1Larger = false;  
+    if(nums1.length>nums2.length){  
+        isNums1Larger = true;  
+    }    
+    if(isNums1Larger)  
+    {        
+	    for(int i=0;i<nums1.length;i++)  
+            {            
+	            map.put(nums1[i],i);  
+            }
+        return lookup(nums2,map);  
+    }    
+    else {  
+        for(int i=0;i<nums2.length;i++)  
+        {            
+	        map.put(nums2[i],i);  
+        }        
+        return lookup(nums1,map);  
+    }  
+  
+}  
+public static int[] lookup(int[] arr, HashMap<Integer,Integer> map)  
+{  
+    List<Integer> res = new ArrayList<>();  
+    for(int ele : arr)  
+    {        
+	    if(map.containsKey(ele))  
+        {            
+	        res.add(ele);  
+            map.remove(ele);  
+        }    
+    }    
+    int[] resArr = new int[res.size()];  
+    for(int i = 0 ;i<res.size();i++)  
+    {        
+	    resArr[i]= res.get(i);  
+    }  
+    return resArr;  
+}
+```
+
