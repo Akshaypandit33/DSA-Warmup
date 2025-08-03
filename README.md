@@ -1352,8 +1352,152 @@ class Solution {
 }
 ```
 
+## Two Sum II
+### [Leetcode - 167](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
+Given a **1-indexed** array of integers `numbers` that is already **_sorted in non-decreasing order_**, find two numbers such that they add up to a specific `target` number. Let these two numbers be `numbers[index1]` and `numbers[index2]` where `1 <= index1 < index2 <= numbers.length`.
 
-### Sort Colors / Dutch Flag Problem
+Return _the indices of the two numbers,_ `index1` _and_ `index2`_, **added by one** as an integer array_ `[index1, index2]` _of length 2._
+
+The tests are generated such that there is **exactly one solution**. You **may not** use the same element twice.
+
+Your solution must use only constant extra space.
+
+**Example 1:**
+
+**Input:** numbers = [2,7,11,15], target = 9
+**Output:** [1,2]
+**Explanation:** The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].
+
+### Approach
+
+using two pointer approach `left`, `right`
+- if there sum is less than the target, increment left pointer
+- if the sum is greater than target, decrement right pointer
+
+### Solution
+
+- **Time complexity** - O(n)
+- **Space complexity** - O(1)
+``` java
+    public int[] twoSum(int[] numbers, int target) {
+
+        int i = 0, j = numbers.length - 1;
+        while(i < j)
+        {
+            int sum = numbers[i] + numbers[j];
+            if(sum == target)
+            {
+                return new int[]{i+1, j+1};
+            }
+            else if(sum > target)
+            {
+                j = j - 1;
+            }
+            else{
+                i = i+1;
+            }
+        }
+        return new int[]{};
+    }
+```
+
+## 3Sum
+### [Leetcode - 15](https://leetcode.com/problems/3sum/description/)
+
+Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.
+
+Notice that the solution set must not contain duplicate triplets.
+
+**Example 1:**
+
+**Input:** nums = [-1,0,1,2,-1,-4]
+**Output:** [[-1,-1,2],[-1,0,1]]
+**Explanation:** 
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+The distinct triplets are [-1,0,1] and [-1,-1,2].
+Notice that the order of the output and the order of the triplets does not matter.
+
+**Example 2:**
+
+**Input:** nums = [0,1,1]
+**Output:** []
+**Explanation:** The only possible triplet does not sum up to 0.
+
+**Example 3:**
+
+**Input:** nums = [0,0,0]
+**Output:** [[0,0,0]]
+**Explanation:** The only possible triplet sums up to 0.
+
+**Constraints:**
+
+- `3 <= nums.length <= 3000`
+- `-105 <= nums[i] <= 105`
+
+### Approach 
+```
+Two Pointers
+```
+- Fix `a` then we will be left of `Two Sum problem` where arrays will be sorted 
+- first sort the array, so that we can efficiently skip the duplicates 
+
+ **Points to keep in mind**
+	- nums[i] != nums[j] != nums[k]
+	- a + b + c = 0
+	- If the value of `a` ,`b` & `c` are positive then we can obviously skip that iteration
+
+### Solution
+
+``` java
+public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> results = new ArrayList<>();
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length - 2; i++)
+        {
+            // fixing firstElement
+            int firstElement = nums[i];
+            if(i > 0 && nums[i] == nums[i - 1])
+            {
+                continue;
+            }
+            // target is -a because
+            // a+b+c=0, then b+c = -a
+            twoSum(nums, firstElement, i+1 , -firstElement, results);
+        }
+        return results;
+    }
+
+    public static void twoSum(int[] nums, int firstElement, int start, int target, List<List<Integer>> results)
+
+    {
+        int left = start, right = nums.length -1;
+        while(left < right)
+        {
+            int sum = nums[left] + nums[right];
+            if(sum == target)
+            {
+                results.add(List.of(firstElement, nums[left], nums[right]));
+                // check for duplicates of b
+                while(left < right && nums[left] == nums[left +1]) left++;
+                // check for duplicates of c
+                while(left < right && nums[right] == nums[right - 1]) right--;
+                left++;
+                right--;
+            }
+            else if(sum < target)
+            {
+                left++;
+            }else
+            {
+                right--;
+            }
+        }
+    }
+```
+
+## Sort Colors / Dutch Flag Problem
 #### [Leetcode - 75](https://leetcode.com/problems/sort-colors/description/)
 
 Given an array `nums` with `n` objects colored red, white, or blue, sort them **in-place** so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
@@ -1427,7 +1571,7 @@ put all 0's on the left side and 2's on right
     }
 ```
 
-###  Intersection of Two Arrays
+##  Intersection of Two Arrays
 
 #### [Leetcode - 349](https://leetcode.com/problems/intersection-of-two-arrays/)
 
@@ -1502,5 +1646,80 @@ public static int[] lookup(int[] arr, HashMap<Integer,Integer> map)
     }  
     return resArr;  
 }
+```
+
+## Container with most water
+### [Leetcode - 11](https://leetcode.com/problems/container-with-most-water/)
+
+You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the `ith` line are `(i, 0)` and `(i, height[i])`.
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return _the maximum amount of water a container can store_.
+
+**Notice** that you may not slant the container.
+
+**Example 1:**
+
+![](https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg)
+
+**Input:** height = [1,8,6,2,5,4,8,3,7]
+**Output:** 49
+**Explanation:** The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+
+**Example 2:**
+
+**Input:** height = [1,1]
+**Output:** 1
+
+### Approach
+
+- Use the **two-pointer technique**:
+    
+    - Initialize `left = 0` and `right = n - 1` (max possible width).
+        
+- The **amount of water** between two lines is:
+    
+    `Area=min⁡( height[left] , height[right] ) × ( right − left )`
+
+- Start with the widest container and move pointers inward to potentially find a taller line:
+    
+    - If the **left height is smaller**, move `left++` (because moving the shorter line inward may increase the height).
+        
+    - If the **right height is smaller**, move `right--`.
+        
+    - If both heights are equal, move both pointers inward.
+        
+- Track the **maximum area** found while adjusting pointers.
+    
+- Stop when `left >= right`.
+### Solution
+
+``` java
+    public int maxArea(int[] height) {
+        int left = 0, right = height.length-1;
+        int maxWater = 0;
+
+        while(left < right)
+        {
+            int area = Math.min(height[left], height[right]) *(right-left);
+            maxWater = Math.max(maxWater, area);
+            
+            if(height[left] < height[right])
+            {
+                left++;
+            }
+            else if(height[left] > height[right])
+            {
+                right--;
+            }
+            else{
+                 left++;
+                 right--;
+            }
+        }
+        return maxWater;
+
+    }
 ```
 
