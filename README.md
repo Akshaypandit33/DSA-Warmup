@@ -1735,6 +1735,13 @@ Given an integer array `nums` sorted in **non-decreasing order**, remove the 
 **Explanation:** Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
 It does not matter what you leave beyond the returned k (hence they are underscores).
 
+### Approach
+
+- skip the duplicates
+- Focus only on unique elements
+
+### Solution
+
 ``` java
     public int removeDuplicates(int[] nums) {
         int count= 1;
@@ -1747,5 +1754,97 @@ It does not matter what you leave beyond the returned k (hence they are undersco
             }
         }
         return count;
+    }
+```
+
+## Remove Element
+### [Leetcode - 27](https://leetcode.com/problems/remove-element/description/)
+
+Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` [**in-place**](https://en.wikipedia.org/wiki/In-place_algorithm). The order of the elements may be changed. Then return _the number of elements in_ `nums` _which are not equal to_ `val`.
+
+Consider the number of elements in `nums` which are not equal to `val` be `k`, to get accepted, you need to do the following things:
+
+- Change the array `nums` such that the first `k` elements of `nums` contain the elements which are not equal to `val`. The remaining elements of `nums` are not important as well as the size of `nums`.
+- Return `k`.
+
+### Solution
+
+``` java
+    public int removeElement(int[] nums, int val) {
+        int count = 0;
+        for(int i = 0; i < nums.length ; i++)
+        {
+            if(nums[i] != val)
+            {
+                nums[count] = nums[i];
+                count++;
+            }
+        }
+        return count;
+    }
+```
+
+## Squares of a Sorted Array
+
+### [Leetcode - 977](https://leetcode.com/problems/squares-of-a-sorted-array/)
+
+Given an integer array `nums` sorted in **non-decreasing** order, return _an array of **the squares of each number** sorted in non-decreasing order_.
+
+**Example 1:**
+
+**Input:** nums = [-4,-1,0,3,10]
+**Output:** [0,1,9,16,100]
+**Explanation:** After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+
+### Approach 
+
+#### 💡 Intuition:
+
+- Squaring a **negative number** makes it **positive**, possibly larger than the square of a positive number.
+    
+- Since the array is already sorted (from negative to positive), the **largest square will come from either the start or end** of the array.
+    
+
+#### 🧠 Logic:
+
+- Use **two pointers**:
+    
+    - `start` at the beginning of the array
+        
+    - `end` at the end of the array
+        
+- Compare squares: `nums[start]^2` vs `nums[end]^2`
+    
+- Place the **larger square** at the **end** of the result array and move the corresponding pointer.
+    
+- This avoids sorting at the end (unlike naive O(n log n) approaches).
+
+### Solution
+
+``` java
+    public int[] sortedSquares(int[] nums) {
+        int[] res = new int[nums.length];
+        Arrays.fill(res,0);
+        int start = 0;
+        int end = nums.length -1;
+        int highestSquareIndex = nums.length - 1;
+        
+        while(start <= end)
+        {
+            int startSquare = nums[start] * nums[start];
+            int endSquare = nums[end] * nums[end];
+            if(startSquare > endSquare)
+            {
+                res[highestSquareIndex] = startSquare;
+                start++;
+            }
+            else{
+                res[highestSquareIndex] = endSquare;
+                end --;
+            }
+            highestSquareIndex --;
+        }
+        return res;
     }
 ```
