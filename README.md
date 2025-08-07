@@ -1497,6 +1497,64 @@ public List<List<Integer>> threeSum(int[] nums) {
     }
 ```
 
+
+## 3Sum Closest
+### [Leetcode - 16](https://leetcode.com/problems/3sum-closest/description)
+
+Given an integer array `nums` of length `n` and an integer `target`, find three integers in `nums` such that the sum is closest to `target`.
+
+Return _the sum of the three integers_.
+
+You may assume that each input would have exactly one solution.
+
+**Example 1:**
+
+**Input:** nums = [-1,2,1,-4], target = 1
+**Output:** 2
+**Explanation:** The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
+### Approach
+
+- **Sort the array** so that you can use the two-pointer technique efficiently.
+- **Fix one number** at a time (starting from index `i`), and try to find the best possible **pair** (from remaining elements) that forms the sum closest to the target.
+- For each fixed number:
+    - Use **two pointers**:
+        - `left` starts just after the fixed element.
+        - `right` starts from the end of the array.
+- Calculate the sum of the triplet (`nums[i] + nums[left] + nums[right]`):
+    - If this sum is **closer to the target** than any previous sum, update the result.
+    - If the sum is **too large**, move the `right` pointer to reduce the sum.
+    - If the sum is **too small**, move the `left` pointer to increase the sum.
+
+### Solution
+
+``` java
+    public int threeSumClosest(int[] nums, int target) {
+        int closestSum = Integer.MAX_VALUE;
+        Arrays.sort(nums);
+        for(int i = 0; i <= nums.length -2; i++)
+        {
+            int left = i+1;
+            int right = nums.length -1;
+            while(left < right)
+            {
+                int sum = nums[i] + nums[left] + nums[right];
+                if(Math.abs(target - sum) < Math.abs(target - closestSum))
+                {
+                    closestSum = sum;
+                }
+                if(sum < target)
+                {
+                    left ++;
+                }
+                else{
+                    right--;
+                }
+            }
+        }
+        return closestSum;
+    }
+```
 ## Sort Colors / Dutch Flag Problem
 #### [Leetcode - 75](https://leetcode.com/problems/sort-colors/description/)
 
@@ -1846,5 +1904,98 @@ After sorting, it becomes [0,1,9,16,100].
             highestSquareIndex --;
         }
         return res;
+    }
+```
+
+## Merge Sorted Array
+
+### [Leetcode - 88](https://leetcode.com/problems/merge-sorted-array/description/)
+
+You are given two integer arrays `nums1` and `nums2`, sorted in **non-decreasing order**, and two integers `m` and `n`, representing the number of elements in `nums1` and `nums2` respectively.
+
+**Merge** `nums1` and `nums2` into a single array sorted in **non-decreasing order**.
+
+The final sorted array should not be returned by the function, but instead be _stored inside the array_ `nums1`. To accommodate this, `nums1` has a length of `m + n`, where the first `m` elements denote the elements that should be merged, and the last `n` elements are set to `0` and should be ignored. `nums2` has a length of `n`.
+
+**Example 1:**
+
+**Input:** nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+**Output:** [1,2,2,3,5,6]
+**Explanation:** The arrays we are merging are [1,2,3] and [2,5,6].
+The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+
+### Approach
+
+Start from the **end** of both arrays and **fill from the end** of `nums1`.
+
+Why? Because the largest elements will be at the end — so placing them from the back avoids overwriting existing data in `nums1`.
+
+### Solution
+
+``` java
+
+public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m-1;
+        int j = n-1;
+        int k = m+n-1;
+        while(j>= 0)
+        {
+            if(i >= 0 && nums1[i] > nums2[j])
+            {
+                nums1[k] = nums1[i];
+                i--;
+            }else
+            {
+                nums1[k] = nums2[j];
+                j--;
+            }
+            k--;
+        }
+    }
+```
+
+
+## Move Zeroes
+
+### [Leetcode - 283](https://leetcode.com/problems/move-zeroes/description/)
+
+Given an integer array `nums`, move all `0`'s to the end of it while maintaining the relative order of the non-zero elements.
+
+**Note** that you must do this in-place without making a copy of the array.
+
+**Example 1:**
+
+**Input:** nums = [0,1,0,3,12]
+**Output:** [1,3,12,0,0]
+
+**Follow up:** Could you minimize the total number of operations done?
+
+### Approach
+
+- **`index` keeps track of the position where the next non-zero should be placed.**
+- **Loop through the array with pointer `i`:**
+    - If `nums[i]` is not `0`, it means it's a valid number and needs to be brought forward (if necessary).
+    - If `i != index`, a swap is performed to bring the non-zero element to its correct position.
+        - This **avoids unnecessary swaps** when `i == index`.
+- After the swap (or direct placement), move the `index` forward.
+
+### Solution
+
+``` java
+    public void moveZeroes(int[] nums) {
+        int index =0;
+        for(int i = 0 ; i< nums.length; i++)
+        {
+            if(nums[i] != 0  )
+            {
+                if(i != index )
+                {
+                int temp = nums[i];
+                nums[i] = nums[index];
+                nums[index] = temp;
+                }
+                index++;
+            }
+        }
     }
 ```
