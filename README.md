@@ -1999,3 +1999,143 @@ Given an integer array `nums`, move all `0`'s to the end of it while maintaini
         }
     }
 ```
+
+
+##  Rotate Array
+### [Leetcode- 189](https://leetcode.com/problems/rotate-array/)
+
+Given an integer array `nums`, rotate the array to the right by `k` steps, where `k` is non-negative.
+
+**Example 1:**
+
+**Input:** nums = [1,2,3,4,5,6,7], k = 3
+**Output:** [5,6,7,1,2,3,4]
+**Explanation:**
+rotate 1 steps to the right: [7,1,2,3,4,5,6]
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
+
+### Approach 1 – Using Extra Array (O(n) Time & Space)
+
+**Idea:**
+- For each element, calculate its new index after rotation:
+```
+newIndex = (currentIndex + k) % nums.length
+```
+
+- Place the element in the new array at `newIndex`.
+- Copy results back into the original array.
+
+**Complexity:**
+- Time: **O(n)** – iterate twice over the array.
+- Space: **O(n)** – need a new array.
+#### Solution
+
+```java
+    public void rotate(int[] nums, int k) {
+    
+        int[] res = new int[nums.length];
+        for(int i = 0; i < nums.length; i++)
+        {
+            int index = (i + k) % nums.length;
+            res[index] = nums[i];
+        }
+        for(int i =0; i< nums.length ;i++)
+        {
+            nums[i] = res[i];
+        }
+        res= null;
+    }
+```
+
+
+### In-place Reversal (O(n) Time, O(1) Space)
+
+ Again, we use remainder.
+```
+Input: nums = [1,2,3,4,5,6,7], k = 9
+```
+
+as `k` is more than the nums size so we can calculate the `k`
+
+```
+	k = k % length of the input array
+```
+
+To explain the algorithm first, it performs three reverse operations.
+
+ First of all, we reverse all numbers.
+```
+[1,2,3,4,5,6,7]
+↓
+[7,6,5,4,3,2,1]
+```
+
+ Then, we create two group `Before k` and `After k`.
+```csharp
+     k
+[7,6,5,4,3,2,1]
+ # # * * * * *
+
+k is remainder
+```
+
+Then, reverse all numbers in each group.
+```
+     k
+[7,6,5,4,3,2,1]
+ # # * * * * *
+↓
+     k
+[6,7,1,2,3,4,5]
+ # # * * * * *
+```
+
+`[6,7,1,2,3,4,5]` is actually answer.
+
+To summarize the algorithm, we use 3 reverse operation.
+
+```
+reverse(0, last index) → whole array
+reverse(0, k - 1) → before k
+reverse(k, last index) → after k
+```
+
+**Complexity:**
+- Time: **O(n)** – each element reversed at most twice.
+- Space: **O(1)** – in-place swaps.
+### Solution
+
+``` java
+    // best effecient solution
+    public void rotate(int[] nums, int k) {
+        k = k % nums.length;
+        // nums= {1,2,3,4,5,6,7}
+        // reverse the whole array
+            // nums= {7,6,5,4,3,2,1}
+        reverse(nums, 0 , nums.length - 1);
+        
+        // reverse first kth group
+        // nums= {5,6,7,4,3,2,1}
+        reverse(nums, 0, k-1);
+
+        // reverse other group
+        reverse(nums,k, nums.length-1);
+
+    }
+
+  
+
+    public static void reverse(int[] nums, int start, int end)
+
+    {
+        while(start < end)
+        {
+            int temp = nums[start];
+            nums[start]= nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+```
