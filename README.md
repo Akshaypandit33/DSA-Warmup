@@ -1131,7 +1131,7 @@ int[] arr = new int[5];
 |    Deletion     |      O(n)       | Worst case will be O(n), because if we delete the element at index 0, then we will have to move all elements |
 ### Memory Allocations / Internal Working of an Array
 
-`int[] arr = new int[5]
+`int[] arr = new int[5]`
 
 |     |     |     |     |     |
 | :-: | --- | --- | --- | --- |
