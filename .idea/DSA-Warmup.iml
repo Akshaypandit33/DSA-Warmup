@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Problems/2.BitwiseOperator" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Problems/3.MathProblems" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Problems/4.Arrays" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Problems/5.Linked List" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Problems/2/BitWiseOperator" />
     </content>
     <orderEntry type="inheritedJdk" />

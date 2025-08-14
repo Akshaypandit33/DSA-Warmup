@@ -1815,6 +1815,130 @@ It does not matter what you leave beyond the returned k (hence they are undersco
     }
 ```
 
+## Remove Duplicates from Sorted Array 2
+
+### [Leetcode - 80](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii)
+
+Given an integer array `nums` sorted in **non-decreasing order**, remove some duplicates [**in-place**](https://en.wikipedia.org/wiki/In-place_algorithm) such that each unique element appears **at most twice**. The **relative order** of the elements should be kept the **same**.
+
+**Example 1:**
+
+**Input:** nums = [1,1,1,2,2,3]
+**Output:** 5, nums = [1,1,2,2,3,_]
+**Explanation:** Your function should return k = 5, with the first five elements of nums being 1, 1, 2, 2 and 3 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+
+### Approach
+
+```
+Input: nums = [1,1,1,2,2,3]
+```
+
+First of all, simply we don't have to care about the first two numbers because **each unique element appears at most twice**. Even if the first two numbers are `[0,1,,,]`, it meets the condition, so we can start from index `2`. Let's say `k`.
+
+```csharp
+     i
+[1,1,1,2,2,3]
+     k
+```
+
+`i` is current index number.  
+`k` is the number to update next time
+
+We can't put the same number `3` times in a row.
+
+---
+
+◽️ Question
+
+How can you decide current number(= `i`) is valid(= 1st or 2nd) or not(= 3rd or more).
+
+---
+
+My strategy is like this. If the number at `k - 2` is different from current number `i`, we should keep `i` number. In other word, it's time to update `k` number with `i` number.
+
+Let's see how it works!
+
+```csharp
+     i
+[1,1,1,2,2,3]
+     k
+```
+
+As I told you, we don't have to care about the first two numbers, so now `i` and `k` are at index `2`. Every time we compare current number(= `i`) with the number at `k - 2`.
+
+Now current number and the number at `k - 2` the same, just move `i` to next. **That means we have the same number `3` time in a row.** That's why `k` will stay at the same index to update the number next time.
+
+```csharp
+       i
+[1,1,1,2,2,3]
+     k
+```
+
+Current number is `2` the number at `k - 2` is `1`, they are different. It's time to update `k` number with current number, then move `k` to next.
+
+```csharp
+         i
+[1,1,2,2,2,3]
+       k
+```
+
+Next, check current number and `k - 2`. They are different.
+
+Be careful, seems like current `i` number is invalid because you see three `2` but in the previous step, we moved `2` from index `3` to index `2`, so you still see `2` at index `3` but actually it was already moved.
+
+We can imagine like this.
+
+```csharp
+         i
+[1,1,2,_,2,3]
+      (2)
+       k
+```
+
+Update `k` with `i`. Since update `2` with `2`, nothing will happen.
+
+```csharp
+           i
+[1,1,2,2,_,3]
+        (2)
+         k
+```
+
+Next, current number is different from `k - 2`, so current number is valid. Update `k` with `i`
+
+```csharp
+             i
+[1,1,2,2,3,_]
+          (3)
+           k
+```
+
+Then finish.
+
+All we have to do is just return `k`.
+
+```kotlin
+return 5 (= k)
+```
+
+### Solution
+
+``` java
+    public int removeDuplicates(int[] nums) {
+        int k =2;
+        for(int i = 2; i< nums.length ; i++)
+        {
+            if(nums[i] != nums[k-2])
+            {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k;
+    }
+```
 ## Remove Element
 ### [Leetcode - 27](https://leetcode.com/problems/remove-element/description/)
 
